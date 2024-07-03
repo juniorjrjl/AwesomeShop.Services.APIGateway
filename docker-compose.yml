@@ -1,0 +1,19 @@
+services:
+  apigateway:
+    build:
+      context: .
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Urls: http://+:5006
+    command: bash start-dev.sh
+    ports:
+      - "5006:5006"
+    networks:
+      - awesome-shop-services-net
+    volumes:
+      - .:/AwesomeShop.Services.ApiGateway
+
+networks:
+  awesome-shop-services-net:
+    name: awesome-shop-services-net
+    external: true
