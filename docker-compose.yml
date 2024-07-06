@@ -12,6 +12,17 @@ services:
       - awesome-shop-services-net
     volumes:
       - .:/AwesomeShop.Services.ApiGateway
+  servicediscovery:
+    image: consul:1.15.4
+    networks:
+      - awesome-shop-services-net
+    ports:
+      - "8500:8500"
+      - "8600:8600/udp"
+    environment:
+      CONSUL_BIND_INTERFACE: eth0
+    command: agent -server -bootstrap-expect=1 -ui -client=0.0.0.0
+
 
 networks:
   awesome-shop-services-net:
