@@ -22,6 +22,12 @@ services:
     environment:
       CONSUL_BIND_INTERFACE: eth0
     command: agent -server -bootstrap-expect=1 -ui -client=0.0.0.0
+  dbcache:
+    image: redis:7.2.5
+    ports:
+      - "6379:6379"
+    networks:
+      - awesome-shop-services-net
 
 
 networks:
